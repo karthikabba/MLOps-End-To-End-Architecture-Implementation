@@ -2,6 +2,7 @@ import logging
 import pandas as pd
 from zenml import step
 from typing import Tuple
+from sklearn.base import RegressorMixin
 from typing_extensions import Annotated
 from src.evaluation import MSE, RMSE, R2
 
@@ -28,9 +29,6 @@ def evaluate_model(model: RegressorMixin,
 
         rmse_class = RMSE()
         rmse = rmse_class.calculate_scores(y_test, predictions)
-
-
-
         return r2_score, rmse, mse
     
     except Exception as e:
