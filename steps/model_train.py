@@ -22,12 +22,17 @@ def train_model(
         y_train: pd.DataFrame,
         y_test: pd.DataFrame,
     """
+    try:
+        model = None
+        if config.model_name == "LinearRegression":
+            model = LinearRegressionModel()
+            trained_model = model.train(X_train, y_train)
+            return trained_model
+        else:
+            raise ValueError("Model {} not supported".format(config.model_name))
 
-    model = None
-    if config.model_name == "LinearRegression":
-        model = LinearRegressionModel()
-        trained_model = model.train(X_train, y_train)
-        return trained_model
-    else:
-        raise ValueError("Model {} not supported".format(config.model_name))
+    except Exception as e:
+        logging.error("Error in training model: {}".format(e))
+        raise(e)
+
 
