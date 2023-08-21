@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 from zenml import step
-from source.model_dev import LinearRegressionModel
+from src.model_dev import LinearRegressionModel
 from sklearn.base import RegressorMixin
 from .config import ModelNameConfig
 
