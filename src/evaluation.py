@@ -62,6 +62,7 @@ class RMSE(Evaluation):
             logging.info("root_mean_squared_error: {}".format(rmse))
             return rmse
         except Exception as e:
+            #log error
             logging.error ("Error in calculating root_mean_squared_error score: {}".format(e))
 
 
