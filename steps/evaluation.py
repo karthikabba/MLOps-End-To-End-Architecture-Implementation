@@ -23,14 +23,19 @@ def evaluate_model(model: RegressorMixin,
         predicted = model.predict(X_test)
         mse_class = MSE()
         mse = mse_class.calculate_scores(y_test, predictions)
+        mlflow.log_metric("mse", mse)
 
         r2_class = R2()
         r2 = r2_class.calculate_scores(y_test, predictions)
+        mlflow.log_metric("r2", r2)
 
         rmse_class = RMSE()
         rmse = rmse_class.calculate_scores(y_test, predictions)
+        mlflow.log_metric("rmse", rmse)
+
+
         return r2_score, rmse, mse
-    
+        
     except Exception as e:
         logging.error("Error in training model: {}".format(e))
         raise(e)
